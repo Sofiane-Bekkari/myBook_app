@@ -1,0 +1,31 @@
+{% extends "layout.html"%}
+
+{% block heading %}
+Resualt
+{% endblock %}
+
+{% block body %}
+
+<!-- ISBN SEARCH -->
+{% for result in isbn %}
+<li class="list-group-item"><small><i class="fas fa-search"></i> Search for</small> <strong>ISBN: </strong><a
+        href="book/{{result.id}}">{{result.isbn}}</a></li>
+{% endfor %}
+
+<!-- TITLE SEARCH -->
+{% for result in titles %}
+<li class="list-group-item"><small><i class="fas fa-search"></i> Search for</small> <strong>TITLE: </strong><a
+        href="book/{{result.id}}">
+        {{result.title}}</a></li>
+
+{% endfor %}
+
+<!-- AUTHOR SEARCH -->
+{% for result in authors %}
+<li class="list-group-item"><small><i class="fas fa-search"></i> Search for</small> <strong>AUTHOR: </strong><a
+        href="book/{{result.id}}">
+        {{result.author}}</a></li>
+
+{% endfor %}
+
+{% endblock %}

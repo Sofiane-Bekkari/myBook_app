@@ -1,0 +1,85 @@
+{% extends "layout.html"%}
+
+{% block heading %}
+Book Detail
+{% endblock %}
+
+{% block body %}
+
+<h3>Book : <small>{{result.title}}</small></h3>
+<hr>
+<table class="table table-striped">
+    <tr>
+        <th>ISBN</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>YEAR</th>
+    </tr>
+    <tr>
+        <td>{{result.isbn}}</td>
+        <td>{{result.title}}</td>
+        <td>{{result.author}}</td>
+        <td>{{result.year}}</td>
+    </tr>
+</table>
+
+<div class="container mt-5">
+    <h4>Reviews for this book</h4>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+            <th></th>
+            <th>RATING</th>
+            <th>AVERAGE RATING</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{rating}}</td>
+            <td>{{average}}</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<hr>
+
+<div class="container mx-auto ">
+    <form class="form-group" method="post">
+        <h6 class="text-center">Rate this book</h6>
+        <div class="text-center">
+
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" value="1" name="rating" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">1</label>
+            </div>
+
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" value="2" name="rating" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">2</label>
+            </div>
+
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline3" value="3" name="rating" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline3">3</label>
+            </div>
+
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline4" value="4" name="rating" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline4">4</label>
+            </div>
+
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline5" value="5" name="rating" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline5">5</label>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <h6>Comments about a book :</h6>
+            <textarea class="form-control" name="comments" cols="40" rows="3"
+                placeholder="Leave your opinion on this book.."></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
+</div>
+{% endblock %}

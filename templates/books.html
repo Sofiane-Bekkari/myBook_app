@@ -1,0 +1,16 @@
+{% extends "layout.html"%}
+
+{% block heading %}
+Book List
+{% endblock %}
+
+{% block body %}
+
+<h3>Book List</h3>
+<ul class="list-group">
+    {% for book in books %}
+    <li class="list-group-item"><a href="book/{{book.id}}"> {{book.title}} {{book.author}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

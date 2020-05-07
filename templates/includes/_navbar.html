@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md bg-info text-muted mb-5">
+    <a class="navbar-brand text-dark" href="#">My<i class="fas fa-book"></i>BookApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-dark" href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                {% if  session['logged_in'] %}
+                <a class="nav-link text-dark" href="/search">Search Book <i class="fas fa-book-reader"></i></a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    <ul class="navbar-nav navbar-right">
+        {% if  session['logged_in'] %}
+        <li class="nav-item">
+            <a href="#" class="nav-link text-dark"> Welcome {{session.user_username}} <i class="far fa-user"></i></a>
+        </li>
+        <li>
+            <a class="nav-link text-dark" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/register">Register</a>
+        </li>
+        <li>
+            <a class="nav-link text-dark" href="/login">Login</a>
+        </li>
+
+        {% endif %}
+    </ul>
+</nav>
