@@ -13,7 +13,6 @@ def myBooklist():
     books = db.execute("SELECT * FROM books_list").fetchall()
     for book in books:
         #print(f" Title: {book.title}, Author: {book.author}, Isbn: {book.isbn}, Year:{book.year}")
-        print(f"title: {book.title}")
         return books
 
 

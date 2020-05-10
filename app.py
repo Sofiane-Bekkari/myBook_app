@@ -11,9 +11,6 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from wtforms import Form, IntegerField, StringField, PasswordField, TextAreaField, validators, SelectField
 from functools import wraps
 
-# I do need to Uninstall Whooosh !!
-from flask_whooshalchemy import StemmingAnalyzer
-
 # Import Books list
 from list_book import myBooklist
 # Import Login
@@ -26,19 +23,13 @@ app = Flask(__name__)
 mybooks = myBooklist()
 users = listUser()
 
-print(users[1].password)
-
 
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:s123@localhost/books'
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['WHOOSH_INDEX_PATH'] = 'whoosh'
 
-
-# db_string = "postgresql://postgres:s123@localhost/books"
-# db = create_engine(db_string, echo=True)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
@@ -174,7 +165,7 @@ def register():
             db.session.commit()
             flash('You are now registered and can log in', 'success')
             return redirect(url_for('login'))
-        flash('You already have a account', 'danger')
+        flash('You Already Have an Account', 'danger')
 
     return render_template('register.html', form=form)
 
@@ -281,7 +272,7 @@ def search_results(search, select):
         flash('No Result Found!', 'danger')
         return render_template('search.html')
 
-
+# API ROUTE
 @app.route("/api/book/<string:id>")
 def book_api(id):
     # Return details about a single book
@@ -298,23 +289,21 @@ def book_api(id):
     # Get reviews.
     rating = review
     rate = []
-    text = []
-    text_count = 0
+    rate1 = []
+    score = 0
     for r in rating:
         rate.append(r.rating)
-        print(len(rate))
-        text.append(r.comments)
+        rate1.append(r.rating)
+
     rate = len(rate)
-    print(rate)
-    # print(text)
-    text_count = text.count(r.comments)
+    score = sum(rate1) / rate  # get average
     return jsonify({
         "title": result.title,
         "author": result.author,
         "year": result.year,
         "isbn": result.isbn,
         "review_count": rate,
-        "text_count": text_count,
+        "average_score": score,
     })
 
 

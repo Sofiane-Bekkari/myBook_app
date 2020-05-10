@@ -7,14 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 db_string = "postgresql://postgres:s123@localhost/books"
-#
 db = create_engine(db_string)
-# engine = create_engine(
-#    "postgresql://postgres:s123@localhost/books", echo=True)
-#db = scoped_session(sessionmaker(bind=engine))
-
-#engine = create_engine("postgresql://postgres:s123@localhost/books", echo=True)
-
 
 def main():
     b = open("books.csv")
